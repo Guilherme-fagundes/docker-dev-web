@@ -1,0 +1,28 @@
+version: '3'
+services:
+  web:
+    build: .
+    networks:
+      - rede-web
+    container_name: php8.2-apache
+    ports:
+      - 80:80
+      - 443:443
+    volumes:
+      - ./www:/var/www/html
+      - ./apache2/apache2.conf:/etc/apache2/apache2.conf
+  mariadb:
+    image: mariadb
+    restart: always
+    networks:
+      - rede-web
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mariadb:/var/lib/mysql
+    environment:
+      - MARIADB_ROOT_PASSWORD=root123
+      - MARIADB_DATABASE=banco-teste
+networks:
+  rede-web:
+    driver: bridge
