@@ -1,7 +1,8 @@
 FROM php:8.2-apache
 RUN apt-get update && apt-get upgrade -y
 
-RUN apt-get install wget
+RUN apt-get install wget -y
+RUN apt-get install curl -y
 
 RUN docker-php-ext-install pdo pdo_mysql
 RUN pecl install xdebug
@@ -15,5 +16,9 @@ RUN service apache2 restart
 RUN wget https://getcomposer.org/download/2.5.5/composer.phar
 RUN mv composer.phar /usr/local/bin/composer
 RUN chmod +x /usr/local/bin/composer
+
+# install nodejs
+RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+RUN apt-get install nodejs -y
 
 EXPOSE 80
