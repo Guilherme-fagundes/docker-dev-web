@@ -2,7 +2,7 @@ FROM php:8.2-apache
 RUN apt-get update && apt-get upgrade -y
 
 RUN apt-get install wget -y
-RUN apt-get install curl -y
+RUN apt-get install curl git unzip zip -y
 
 RUN docker-php-ext-install pdo pdo_mysql
 RUN pecl install xdebug
