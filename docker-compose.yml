@@ -4,7 +4,7 @@ services:
     build: .
     networks:
       - rede-web
-    container_name: php8.2-apache
+    
     ports:
       - 80:80
       - 443:443
@@ -13,7 +13,7 @@ services:
       - ./apache2/apache2.conf:/etc/apache2/apache2.conf
   phpmyadmin:
     image: phpmyadmin
-    container_name: phpmyadmin
+    
     networks:
       - rede-web
     ports:
@@ -24,7 +24,6 @@ services:
       - PMA_ARBITRARY=1
   mariadb:
     image: mariadb
-    container_name: mariadb
     restart: always
     networks:
       - rede-web
